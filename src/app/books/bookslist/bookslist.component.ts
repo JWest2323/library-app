@@ -11,4 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class BookslistComponent {
   @Input() books: BookDetails[] = [];
+
+  removeBook(currentBook: BookDetails) {
+    this.books = this.books.filter((book) => book.bookid != currentBook.bookid);
+  }
 }
