@@ -1,4 +1,5 @@
-<div class="container-fluid p-5">
+<div class="container-fluid p-5 pt-3">
+  <library-book-form (submittedBook)="addBook($event)" ></library-book-form>
   <div *ngIf="books.length > 0" class="row">
     <div class="col-sm-6 p-3" *ngFor="let book of books">
       <div class="card p-2">
@@ -64,7 +65,7 @@
           <p class="card-text">
             {{ book.author }}, {{ book.genre }}, {{ book.yearPublished }}
           </p>
-          <a href="#" class="btn btn-primary">Edit Book</a>
+          <a href="#" class="btn btn-dark">Edit Book</a>
         </div>
       </div>
     </div>
