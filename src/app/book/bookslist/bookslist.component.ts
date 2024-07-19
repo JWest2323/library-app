@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component } from '@angular/core';
+import { AfterContentInit, Component } from '@angular/core';
 import { BookDetails } from '../book';
 import { CommonModule } from '@angular/common';
 import { AddBookFormComponent } from '../../book-forms/add-book-form/add-book-form.component';
