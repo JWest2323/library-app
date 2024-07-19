@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { BookDetails } from '../book';
 import { CommonModule } from '@angular/common';
-import { BookFormComponent } from '../../book-form/book-form.component';
+import { AddBookFormComponent } from '../../book-forms/add-book-form/add-book-form.component';
 import { BookComponent } from '../book.component';
 import { v4 as uuidv4 } from 'uuid';
+import { EditBookFormComponent } from '../../book-forms/edit-book-form/edit-book-form.component';
 
 @Component({
   selector: 'library-bookslist',
   standalone: true,
-  imports: [CommonModule, BookFormComponent],
+  imports: [CommonModule, AddBookFormComponent, EditBookFormComponent],
   templateUrl: './bookslist.component.html',
   styleUrl: './bookslist.component.scss',
 })
