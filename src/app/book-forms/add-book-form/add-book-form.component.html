@@ -97,6 +97,7 @@
           <button
             type="button"
             class="btn btn-success"
+            [disabled]="!bookForm.valid"
             (click)="onSubmit()"
             data-bs-dismiss="modal"
           >
