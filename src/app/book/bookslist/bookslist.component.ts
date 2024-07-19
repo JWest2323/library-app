@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component } from '@angular/core';
 import { BookDetails } from '../book';
 import { CommonModule } from '@angular/common';
 import { AddBookFormComponent } from '../../book-forms/add-book-form/add-book-form.component';
@@ -13,7 +13,18 @@ import { EditBookFormComponent } from '../../book-forms/edit-book-form/edit-book
   templateUrl: './bookslist.component.html',
   styleUrl: './bookslist.component.scss',
 })
-export class BookslistComponent {
+export class BookslistComponent implements AfterContentInit {
+
+  ngAfterContentInit(): void {
+    this.selectedBookValue = {
+      bookid: '',
+      title: '',
+      author: '',
+      yearPublished: 0,
+      genre: '',
+    };
+  }
+
   books: BookDetails[] = [
     {
       bookid: uuidv4(),
@@ -61,6 +72,10 @@ export class BookslistComponent {
   }
 
   onDelete(currentBook: BookDetails) {
+    this.selectedBookValue = currentBook;
+  }
+
+  onEdit(currentBook: BookDetails) {
     this.selectedBookValue = currentBook;
   }
 
