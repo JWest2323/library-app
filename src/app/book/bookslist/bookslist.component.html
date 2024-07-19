@@ -72,14 +72,15 @@
           <button
             href="#"
             class="btn btn-dark"
+            (click)="onEdit(book)"
             data-bs-toggle="modal"
             data-bs-target="#staticEditBookBackdrop"
           >
             Edit Book
           </button>
-          <library-edit-book-form [currentBook]="book" ></library-edit-book-form>
         </div>
       </div>
     </div>
+    <library-edit-book-form [currentBook]="selectedBookValue" ></library-edit-book-form>
   </div>
 </div>
