@@ -34,11 +34,12 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            (click)="addBookForm.reset()"
           ></button>
         </div>
         {{ newBook | json }}
         <form
-          #bookForm="ngForm"
+          #addBookForm="ngForm"
           class="modal-body d-flex flex-column mb-3 justify-content-center"
         >
           <div class="p-4">
@@ -50,7 +51,15 @@
               required
               [(ngModel)]="newBook.title"
               name="title"
+              #title="ngModel"
             />
+            <div
+              class="mt-1"
+              [hidden]="title.valid || title.pristine"
+              class="alert alert-danger"
+            >
+              Title is required!
+            </div>
           </div>
           <div class="p-4">
             <label for="author" class="form-label">Author</label>
@@ -61,7 +70,15 @@
               required
               [(ngModel)]="newBook.author"
               name="author"
+              #author="ngModel"
             />
+            <div
+              class="mt-1"
+              [hidden]="author.valid || author.pristine"
+              class="alert alert-danger"
+            >
+              Author is required!
+            </div>
           </div>
           <div class="p-4">
             <label for="yearPublished" class="form-label">Year Published</label>
@@ -72,7 +89,15 @@
               required
               [(ngModel)]="newBook.yearPublished"
               name="yearPublished"
+              #yearPublished="ngModel"
             />
+            <div
+              class="mt-1"
+              [hidden]="yearPublished.valid || yearPublished.pristine"
+              class="alert alert-danger"
+            >
+              Year Publishished is required!
+            </div>
           </div>
           <div class="p-4">
             <label for="genre" class="form-label">Genre</label>
@@ -83,7 +108,15 @@
               required
               [(ngModel)]="newBook.genre"
               name="genre"
+              #genre="ngModel"
             />
+            <div
+              class="mt-1"
+              [hidden]="genre.valid || genre.pristine"
+              class="alert alert-danger"
+            >
+              Genre is required!
+            </div>
           </div>
         </form>
         <div class="modal-footer">
@@ -91,14 +124,15 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            (click)="addBookForm.reset()"
           >
             Cancel
           </button>
           <button
             type="button"
             class="btn btn-success"
-            [disabled]="!bookForm.valid"
-            (click)="onSubmit()"
+            [disabled]="!addBookForm.valid"
+            (click)="onSubmit(); addBookForm.reset()"
             data-bs-dismiss="modal"
           >
             Save Book
