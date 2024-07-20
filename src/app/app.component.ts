@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './components/book/book.component';
 
 @Component({
   selector: 'library-root',
