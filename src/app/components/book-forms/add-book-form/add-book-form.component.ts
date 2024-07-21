@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { BookComponent } from '../../book/book.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BookDetails } from '../../book/book';
 
 @Component({
   selector: 'library-add-book-form',
@@ -21,27 +21,26 @@ export class AddBookFormComponent {
 
   genre: string = '';
 
-  newBook = new BookComponent(
-    this.id,
-    this.title,
-    this.author,
-    this.yearPublished,
-    this.genre
-  );
-  // model = new BookComponent('0');
+  newBook: BookDetails = {
+    bookid: '',
+    title: '',
+    author: '',
+    yearPublished: new Date().getFullYear(),
+    genre: '',
+  };
 
-  @Output() submittedBook = new EventEmitter<BookComponent>();
+  @Output() submittedBook = new EventEmitter<BookDetails>();
 
   submitted: boolean = false;
 
   clearBookForm() {
-    this.newBook = new BookComponent(
-      this.id,
-      this.title,
-      this.author,
-      this.yearPublished,
-      this.genre
-    );
+    this.newBook = {
+      bookid: '',
+      title: '',
+      author: '',
+      yearPublished: new Date().getFullYear(),
+      genre: '',
+    };
   }
 
   onSubmit() {

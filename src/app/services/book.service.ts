@@ -15,9 +15,9 @@ export class BookService {
     return this.http.get<BookDetails[]>(this.apiUrl);
   }
 
-  addBook(book: BookDetails) : Observable<BookDetails> {
+  addBook(book: BookDetails) : Observable<BookDetails[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<BookDetails>(this.apiUrl, book, { headers });
+    return this.http.post<BookDetails[]>(this.apiUrl, book, { headers });
   }
 
   updateBook(bookid: string, book: BookDetails) : Observable<BookDetails> {
