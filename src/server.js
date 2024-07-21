@@ -1,14 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "http://localhost:4200",
+  methods: "GET, POST, POST, DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
 
 // init express app
 
 const app = express();
 const port = process.env.port || 3000;
 
-// bodyParser middleware
+// bodyParser & cors middleware
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 // in-memory data storage
 let books = [
