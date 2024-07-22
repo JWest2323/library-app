@@ -22,28 +22,28 @@ app.use(cors(corsOptions));
 // in-memory data storage
 let books = [
   {
-    bookid: uuidv4(),
+    id: uuidv4(),
     title: "The Alchemist ",
     author: "Paulo Coelho",
     yearPublished: new Date("04-25-1993").getFullYear(),
     genre: "Fantasy Novel",
   },
   {
-    bookid: uuidv4(),
+    id: uuidv4(),
     title: "The Richest Man in Babylon",
     author: "George Samuel Clason",
     yearPublished: new Date("04-04-1926").getFullYear(),
     genre: "Non-fiction/Personal Finance",
   },
   {
-    bookid: uuidv4(),
+    id: uuidv4(),
     title: "The Magic of Thinking Big",
     author: "David J. Schwartz",
     yearPublished: new Date("04-02-1987").getFullYear(),
     genre: "Self-help",
   },
   {
-    bookid: uuidv4(),
+    id: uuidv4(),
     title: "The Four Agreements: A Practical Guide to Personal Freedom",
     author: "Don Miguel Ruiz",
     yearPublished: new Date("11-07-1997").getFullYear(),
@@ -58,7 +58,8 @@ app.get("/books", (req, res) => {
 
 // POST /books - Adds a new book
 app.post("/books", (req, res) => {
-  const book = { id: uuidv4(), ...req.body };
+  const { title, author, yearPublished, genre } = req.body;
+  const book = { id: uuidv4(), title, author, yearPublished, genre };
   books.push(book);
   res.status(201).send(books);
 });
@@ -66,7 +67,7 @@ app.post("/books", (req, res) => {
 // PUT /books/:id - Updates an existing book
 app.put("/books/:id", (req, res) => {
   const id = req.params.id;
-  const bookIndex = books.findIndex((book) => book.bookid === id);
+  const bookIndex = books.findIndex((book) => book.id === id);
 
   if (bookIndex === -1) {
     return res.status(404).send({ error: "Book was not found" });
@@ -82,7 +83,7 @@ app.put("/books/:id", (req, res) => {
 // DELETE /books/:id - Deletes an existing book
 app.delete("/books/:id", (req, res) => {
   const id = req.params.id;
-  const bookIndex = books.findIndex((book) => book.bookid === id);
+  const bookIndex = books.findIndex((book) => book.id === id);
 
   if (bookIndex === -1) {
     res.status(404).send({ error: "Book was not found" });
