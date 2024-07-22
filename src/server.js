@@ -52,16 +52,24 @@ let books = [
 ];
 
 // GET /books - Returns all books
-app.get("/books", (req, res) => {
-  res.json(books);
+app.get("/books", (req, res, next) => {
+  try {
+    res.json(books);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // POST /books - Adds a new book
-app.post("/books", (req, res) => {
-  const { title, author, yearPublished, genre } = req.body;
-  const book = { id: uuidv4(), title, author, yearPublished, genre };
-  books.push(book);
-  res.status(201).send(books);
+app.post("/books", (req, res, next) => {
+  try {
+    const { title, author, yearPublished, genre } = req.body;
+    const book = { id: uuidv4(), title, author, yearPublished, genre };
+    books.push(book);
+    res.status(201).send(books);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // PUT /books/:id - Updates an existing book
