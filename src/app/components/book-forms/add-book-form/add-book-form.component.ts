@@ -22,7 +22,7 @@ export class AddBookFormComponent {
   genre: string = '';
 
   newBook: BookDetails = {
-    bookid: '',
+    id: '',
     title: '',
     author: '',
     yearPublished: new Date().getFullYear(),
@@ -35,7 +35,7 @@ export class AddBookFormComponent {
 
   clearBookForm() {
     this.newBook = {
-      bookid: '',
+      id: '',
       title: '',
       author: '',
       yearPublished: new Date().getFullYear(),

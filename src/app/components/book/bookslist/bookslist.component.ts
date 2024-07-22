@@ -21,7 +21,7 @@ export class BookslistComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.selectedBookValue = {
-      bookid: '',
+      id: '',
       title: '',
       author: '',
       yearPublished: 0,
@@ -48,11 +48,9 @@ export class BookslistComponent implements OnInit, AfterContentInit {
   }
 
   removeBook() {
-    this.bookService
-      .deleteBook(this.selectedBookValue.bookid)
-      .subscribe((data) => {
-        this.books = data;
-      });
+    this.bookService.deleteBook(this.selectedBookValue.id).subscribe((data) => {
+      this.books = data;
+    });
   }
 
   onEdit(currentBook: BookDetails) {
@@ -61,7 +59,7 @@ export class BookslistComponent implements OnInit, AfterContentInit {
 
   updateBook() {
     this.bookService
-      .updateBook(this.selectedBookValue.bookid, this.selectedBookValue)
+      .updateBook(this.selectedBookValue.id, this.selectedBookValue)
       .subscribe((data) => {
         this.books = data;
       });
