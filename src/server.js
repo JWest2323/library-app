@@ -120,6 +120,24 @@ app.delete("/books/:id", (req, res) => {
 });
 
 // Start server
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });
+
+const gracefulShutdown = () => {
+  console.log("Shutting down gracefully...");
+
+  server.close(() => {
+    console.log("Closing out remaining connections");
+    process.exit(0);
+  });
+
+  // force close after 5 seconds
+  setTimeout(() => {
+    console.log("Forcing shutdown...");
+    process.exit(1);
+  }, 5000);
+};
+
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGINT", gracefulShutdown);
