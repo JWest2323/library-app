@@ -37,8 +37,6 @@ export class BookslistComponent implements OnInit, AfterContentInit {
 
   addBook(book: BookDetails) {
     this.bookService.addBook(book).subscribe((data) => {
-      console.log(data);
-
       this.books = data;
     });
   }
