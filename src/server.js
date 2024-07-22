@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
+const { body, validationResult } = require("express-validator");
 
 const corsOptions = {
   origin: "http://localhost:4200",
@@ -18,6 +19,22 @@ const port = process.env.port || 3000;
 // bodyParser & cors middleware
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+
+// validation middleware
+const validateBook = [
+  body("title").isString().notEmpty(),
+  body("author").isString().notEmpty(),
+  body("yearPublished").isISO8601().toInt(),
+  body("genre").isString().notEmpty(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+];
 
 // in-memory data storage
 let books = [
@@ -61,7 +78,7 @@ app.get("/books", (req, res, next) => {
 });
 
 // POST /books - Adds a new book
-app.post("/books", (req, res, next) => {
+app.post("/books", validateBook, (req, res, next) => {
   try {
     const { title, author, yearPublished, genre } = req.body;
     const book = { id: uuidv4(), title, author, yearPublished, genre };
