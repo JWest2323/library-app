@@ -82,7 +82,7 @@ app.put("/books/:id", (req, res) => {
 // DELETE /books/:id - Deletes an existing book
 app.delete("/books/:id", (req, res) => {
   const id = req.params.id;
-  const bookIndex = books.findIndex((book) => book.id === id);
+  const bookIndex = books.findIndex((book) => book.bookid === id);
 
   if (bookIndex === -1) {
     res.status(404).send({ error: "Book was not found" });
@@ -90,7 +90,7 @@ app.delete("/books/:id", (req, res) => {
 
   const deletedBook = books.splice(bookIndex, 1);
 
-  res.send(deletedBook);
+  res.send(books);
 });
 
 // Start server

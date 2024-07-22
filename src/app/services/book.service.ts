@@ -26,8 +26,8 @@ export class BookService {
     return this.http.put<BookDetails>(url, book, { headers });
   }
 
-  deleteBook(bookid: string) : Observable<BookDetails> {
+  deleteBook(bookid: string) : Observable<BookDetails[]> {
     const url = `${this.apiUrl}/${bookid}`;
-    return this.http.delete<BookDetails>(url);
+    return this.http.delete<BookDetails[]>(url);
   }
 }

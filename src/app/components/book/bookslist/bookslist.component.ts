@@ -38,7 +38,7 @@ export class BookslistComponent implements OnInit, AfterContentInit {
   addBook(book: BookDetails) {
     this.bookService.addBook(book).subscribe((data) => {
       console.log(data);
-      
+
       this.books = data;
     });
   }
@@ -52,8 +52,10 @@ export class BookslistComponent implements OnInit, AfterContentInit {
   }
 
   removeBook() {
-    this.books = this.books.filter(
-      (book) => book.bookid !== this.selectedBookValue.bookid
-    );
+    this.bookService
+      .deleteBook(this.selectedBookValue.bookid)
+      .subscribe((data) => {
+        this.books = data;
+      });
   }
 }
