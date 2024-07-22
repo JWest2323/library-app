@@ -81,6 +81,9 @@
         </div>
       </div>
     </div>
-    <library-edit-book-form [currentBook]="selectedBookValue" ></library-edit-book-form>
+    <library-edit-book-form
+      [currentBook]="selectedBookValue"
+      (editedBook)="updateBook()"
+    ></library-edit-book-form>
   </div>
 </div>

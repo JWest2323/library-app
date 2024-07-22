@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const corsOptions = {
   origin: "http://localhost:4200",
-  methods: "GET, POST, POST, DELETE",
+  methods: "GET, POST, PUT, DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
 };
@@ -66,7 +66,7 @@ app.post("/books", (req, res) => {
 // PUT /books/:id - Updates an existing book
 app.put("/books/:id", (req, res) => {
   const id = req.params.id;
-  const bookIndex = books.findIndex((book) => book.id === id);
+  const bookIndex = books.findIndex((book) => book.bookid === id);
 
   if (bookIndex === -1) {
     return res.status(404).send({ error: "Book was not found" });
@@ -76,7 +76,7 @@ app.put("/books/:id", (req, res) => {
 
   books[bookIndex] = updatedBook;
 
-  res.send(updatedBook);
+  res.send(books);
 });
 
 // DELETE /books/:id - Deletes an existing book

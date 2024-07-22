@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BookDetails } from '../../book/book';
@@ -12,4 +12,10 @@ import { BookDetails } from '../../book/book';
 })
 export class EditBookFormComponent {
   @Input() currentBook!: BookDetails;
+
+  @Output() editedBook = new EventEmitter<BookDetails>();
+
+  onEdit() {
+    this.editedBook.emit(this.currentBook);
+  }
 }

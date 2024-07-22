@@ -47,13 +47,21 @@ export class BookslistComponent implements OnInit, AfterContentInit {
     this.selectedBookValue = currentBook;
   }
 
+  removeBook() {
+    this.bookService
+      .deleteBook(this.selectedBookValue.bookid)
+      .subscribe((data) => {
+        this.books = data;
+      });
+  }
+
   onEdit(currentBook: BookDetails) {
     this.selectedBookValue = currentBook;
   }
 
-  removeBook() {
+  updateBook() {
     this.bookService
-      .deleteBook(this.selectedBookValue.bookid)
+      .updateBook(this.selectedBookValue.bookid, this.selectedBookValue)
       .subscribe((data) => {
         this.books = data;
       });

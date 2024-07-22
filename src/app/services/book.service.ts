@@ -20,10 +20,10 @@ export class BookService {
     return this.http.post<BookDetails[]>(this.apiUrl, book, { headers });
   }
 
-  updateBook(bookid: string, book: BookDetails) : Observable<BookDetails> {
+  updateBook(bookid: string, book: BookDetails) : Observable<BookDetails[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.apiUrl}/${bookid}`;
-    return this.http.put<BookDetails>(url, book, { headers });
+    return this.http.put<BookDetails[]>(url, book, { headers });
   }
 
   deleteBook(bookid: string) : Observable<BookDetails[]> {
